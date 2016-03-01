@@ -1,0 +1,27 @@
+{
+  "name": "domus",
+  "authors": [
+    "btissot"
+  ],
+  "description": "",
+  "main": "index.php",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "index.php",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^2.2.0",
+    "highcharts": "^4.2.3",
+    "datatables": "DataTables#^1.10.11",
+    "bootstrap": "^3.3.6",
+    "weather-icons": "^2.0.10",
+    "font-awesome": "fontawesome#^4.5.0",
+    "moment": "^2.11.2"
+  }
+}
