@@ -124,6 +124,14 @@ i.wi {
   font-size: 0.4em;
 }
 
+.evoUp {
+  color: lime;
+}
+
+.evoDown {
+  color: #CE0000;
+}
+
 .widget-history {
   background-color: rgba(255,255,255,0.4);
   border-bottom-left-radius: 10px;

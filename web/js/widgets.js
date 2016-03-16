@@ -34,12 +34,14 @@ function loadDefaultWidget(iWidget) {
     },
     success: function(data) {
       if (iWidget === "meteo") {
-        var wrapped = $("<div>" + data.value + "</div>");
+        var content = data.value.replace(/http:\/\/widget.meteocity.com\/templates\/images\/icons1/g, "img/meteo");
+        var wrapped = $("<div>" + content + "</div>");
         wrapped.find("link, title, meta, script").remove();
         $("#" + iWidget + "-content").html(wrapped.html());
       } else {
         $("#" + iWidget + "-value").text(data.value);
         $("#" + iWidget + "-comparison").text(data.comparison);
+        $("#" + iWidget + " .widget-evolution").removeClass("evoUp evoDown").addClass((data.comparison.indexOf("+") > -1) ? "evoUp" : "evoDown");
       }
     }
   });

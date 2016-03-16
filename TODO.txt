@@ -1,0 +1,10 @@
+- Bootstrap migration
+* Weight widget
+- Database setup
+- Crontab
+- GoPro interface
+- Voice recognition
+- Voice reading
+* Meteo icons
+- tablet display viewport
+- Weight chart

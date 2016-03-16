@@ -66,6 +66,9 @@ averages = [
 ];
 
 function createChart(iId) {
+
+  var target = $("#dimension").val();
+
   $('#' + iId).highcharts({
     chart: {
       backgroundColor: 'rgba(0, 0, 0, 0.0001)',
@@ -100,7 +103,7 @@ function createChart(iId) {
     tooltip: {
       crosshairs: true,
       shared: true,
-      valueSuffix: '°C'
+      valueSuffix: getTooltipSuffix(target)
     },
     legend: {
       symbolRadius: 4,
@@ -130,4 +133,19 @@ function createChart(iId) {
       zIndex: 0
     }]
   });
+}
+
+function getTooltipSuffix(iTarget) {
+  var oSuffix;
+  switch(iTarget) {
+    case "temperature":
+      oSuffix = "°C";
+      break;
+    case "humidity":
+      oSuffix = "%";
+      break;
+    default:
+      oSuffix = "";
+  }
+  return oSuffix;
 }

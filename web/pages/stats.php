@@ -1,3 +1,14 @@
+<?php
+  if (isset($_GET["target"]) && !empty($_GET["target"])) {
+    $target = $_GET["target"];
+  } else {
+    $target = "temperature";
+  }
+  $dimensions = array();
+  $dimensions["temperature"] = "Temperature";
+  $dimensions["humidity"] = "Humidity";
+?>
+
 <h1><i class="fa fa-area-chart"></i>Statistics</h1>
 
 <section class="container">
@@ -9,8 +20,16 @@
     <div>
       <label for="dimension">Show:</label>
       <select id="dimension">
-        <option value="temperature">Temperature</option>
-        <option value="humidity">Humidity</option>
+        <?php
+          foreach ($dimensions as $key => $value) {
+            $option = "<option value='{$key}'";
+            if ($key === $target) {
+              $option .= " selected";
+            }
+            $option .= ">{$value}</option>";
+            echo($option);
+          }
+        ?>
       </select>
     </div>
   </div>
