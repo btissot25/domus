@@ -1,6 +1,8 @@
 <h1><i class="fa fa-tachometer"></i>Dashboard</h1>
 
-<div></div>
+<section class="alert alert-danger">
+  <ul id="error"></ul>
+</section>
 
 <section class="flex-cont">
   <div class="flex-cont flex-cont-col">

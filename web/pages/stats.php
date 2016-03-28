@@ -1,4 +1,9 @@
 <?php
+
+  include_once "DatabaseHandler.class.php";
+
+  date_default_timezone_set('UTC');
+
   if (isset($_GET["target"]) && !empty($_GET["target"])) {
     $target = $_GET["target"];
   } else {
@@ -7,7 +12,25 @@
   $dimensions = array();
   $dimensions["temperature"] = "Temperature";
   $dimensions["humidity"] = "Humidity";
+
+  $sql = "SELECT DATE(TIMESTAMP) AS DATE, MIN(VALUE) AS MIN, MAX(VALUE) AS MAX, AVG(VALUE) AS AVG FROM TEMPERATURE GROUP BY DATE(TIMESTAMP);";//TODO add table here
+
+  $columns = array("DATE", "MIN", "MAX", "AVG");
+  $dbOutput = DatabaseHandler::executeSelect($sql, $columns);
+  $ranges = array();
+  $averages = array();
+  foreach($dbOutput as $rowIndex => $row) {
+    $dateUTC = strtotime($row["DATE"]) * 1000;
+    array_push($ranges, array($dateUTC, floatval($row["MIN"]), floatval($row["MAX"])));
+    array_push($averages, array($dateUTC, floatval($row["AVG"])));
+  }
+
 ?>
+
+<script type="text/javascript">
+  var ranges = <?php echo(json_encode($ranges)); ?>;
+  var averages = <?php echo(json_encode($averages)); ?>;
+</script>
 
 <h1><i class="fa fa-area-chart"></i>Statistics</h1>
 

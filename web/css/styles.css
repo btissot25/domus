@@ -40,6 +40,10 @@ a {
   background-position: center;
 }
 
+#error {
+  display: none;
+}
+
 i.fa,
 i.wi {
   margin-right: 10px;

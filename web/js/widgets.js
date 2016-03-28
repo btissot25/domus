@@ -2,6 +2,7 @@ function initWidgets() {
   var widgetsList = {
     "temperature": "default",
     "humidity": "default",
+    "weight": "default",
     "meteo": "meteo",
     "time": "time"
   };
@@ -13,7 +14,7 @@ function initWidgets() {
 
 function loadWidget(iWidget, iWidgetType) {
   if (iWidgetType === "time") {
-    setInterval("loadTimeWidget()", 500);
+    setInterval(loadTimeWidget, 500);
   } else {
     loadDefaultWidget(iWidget);
   }
@@ -39,9 +40,17 @@ function loadDefaultWidget(iWidget) {
         wrapped.find("link, title, meta, script").remove();
         $("#" + iWidget + "-content").html(wrapped.html());
       } else {
-        $("#" + iWidget + "-value").text(data.value);
-        $("#" + iWidget + "-comparison").text(data.comparison);
-        $("#" + iWidget + " .widget-evolution").removeClass("evoUp evoDown").addClass((data.comparison.indexOf("+") > -1) ? "evoUp" : "evoDown");
+        if (!data.error) {
+          $("#" + iWidget + "-value").text(data.value);
+          $("#" + iWidget + "-comparison").text(data.comparison);
+          $("#" + iWidget + " .widget-value").attr("title", "Last Update: " + data.lastUpdate);
+          $("#" + iWidget + " .widget-evolution").removeClass("evoUp evoDown").addClass((data.comparison.indexOf("+") > -1) ? "evoUp" : "evoDown");
+        } else {
+          var listItem = "<li>" + data.error + "</li>";
+          if ($("#error").html().indexOf(listItem) === -1) {
+            $("#error").append(listItem).show();
+          }
+        }
       }
     }
   });

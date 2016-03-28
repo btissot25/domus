@@ -4,6 +4,7 @@
   <head>
 
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="shortcut icon" type="image/ico" href="img/favicon.ico" />
     <link rel="stylesheet" href="bower_components/weather-icons/css/weather-icons.min.css" />
@@ -34,15 +35,15 @@
 
       <?php
         if (isset($_GET["page"]) && !empty($_GET["page"])) {
-          include 'pages/' . $_GET["page"] . '.php';
+          include_once 'pages/' . $_GET["page"] . '.php';
         } else {
-          include 'pages/home.php';
+          include_once 'pages/home.php';
         }
       ?>
 
     </div>
 
-    <footer>
+    <footer style="display:none">
       <p>Here is my footer.</p>
     </footer>
 
